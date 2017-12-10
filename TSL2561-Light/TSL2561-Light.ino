@@ -31,6 +31,7 @@
 
 // Enable debug prints to serial monitor
 //#define MY_DEBUG
+#undef MY_DEBUG
 
 // Enable and select radio type attached
 #define MY_RADIO_NRF24
@@ -115,12 +116,6 @@ void configureSensor(void)
   tsl.setIntegrationTime(TSL2561_INTEGRATIONTIME_13MS);      /* fast but low resolution */
   // tsl.setIntegrationTime(TSL2561_INTEGRATIONTIME_101MS);  /* medium resolution and speed   */
   // tsl.setIntegrationTime(TSL2561_INTEGRATIONTIME_402MS);  /* 16-bit data but slowest conversions */
-
-  /* Update these values depending on what you've set above! */  
-  Serial.println("------------------------------------");
-  Serial.print  ("Gain:         "); Serial.println("Auto");
-  Serial.print  ("Timing:       "); Serial.println("13 ms");
-  Serial.println("------------------------------------");
 }
 
 
