@@ -1,7 +1,8 @@
 /***************************************************************************
 
  ***************************************************************************/
-#define MY_DEBUG
+//#define MY_DEBUG
+#undef MY_DEBUG
 #define MY_RADIO_NRF24
 
 
@@ -18,8 +19,7 @@
 
 Adafruit_BMP280 bme; // I2C
 
-
-MyMessage msgTemp(TEMP_CHILD, V_TEMP);
+MyMessage msgTemperature(TEMP_CHILD, V_TEMP);
 MyMessage msgPressure(BARO_CHILD, V_PRESSURE);
 
 
@@ -36,7 +36,7 @@ void setup() {
 }
 
 void presentation() {
-  sendSketchInfo("Pressure + Temperature Sensor", "1.0");
+  sendSketchInfo("Pressure Temperature Sensor", "1.0");
 
   present(BARO_CHILD, S_BARO);
   present(TEMP_CHILD, S_TEMP);
@@ -46,7 +46,7 @@ void loop() {
     float tempBMP  = bme.readTemperature();
     float pressBMP = bme.readPressure() / 100 + 14.92; // Correction for 125m elevation
 
-    send(msgTemp.set(tempBMP, 1));
+    send(msgTemperature.set(tempBMP, 1));
     send(msgPressure.set(pressBMP, 1));
     
 #ifdef MY_DEBUG
